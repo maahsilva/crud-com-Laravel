@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$title}}</title>
+    <title>Show</title>
 </head>
 <body>
-    @foreach ($clientes as $cliente)
-      {{$cliente['nome']}} {{$cliente['sobrenome']}}<br>
-    @endforeach
+    <div>
+        @if ($text == '')
+
+        <h1>{{$msg}}</h1>
+        
+            
+        @else
+        <h1>{{$text}}</h1>
+        {{$cliente['nome']}}
+        @endif
+        
+    </div>
+
 </body>
 </html>
