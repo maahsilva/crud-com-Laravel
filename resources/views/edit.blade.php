@@ -7,7 +7,7 @@
     <title>Editando</title>
 </head>
 <body>
-    <form action="{{route('clientes.update')}}" method="POST">
+    <form action="{{route('clientes.update',$cliente['nome'])}}" method="POST">
         @csrf
         @method('PUT')
         <label for="nome" >Nome</label>

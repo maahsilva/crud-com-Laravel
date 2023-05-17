@@ -7,8 +7,28 @@
     <title>{{$title}}</title>
 </head>
 <body>
+  <a href="{{route('clientes.create')}}">Cadastrar</a>
+  <br><br>
     @foreach ($clientes as $cliente)
-      {{$cliente['nome']}} {{$cliente['sobrenome']}}<br>
+    <div>
+      <div> 
+        {{$cliente['nome']}} {{$cliente['sobrenome']}}<br><br>
+      </div>
+    
+    
+     <div>
+      <a href="{{route('clientes.show',$cliente['nome'])}}">Ver</a> <a href="{{route('clientes.edit',$cliente['nome'])}}">Editar</a>
+      
+      <form action="{{route('clientes.destroy',$cliente['nome'])}}" method="post">
+        @csrf
+        @method('DELETE')
+        <button type="submit" href="">Excluir</button>
+      </form>
+      
+    </div>
+  </div>
+    <hr>
+      
     @endforeach
 </body>
 </html>

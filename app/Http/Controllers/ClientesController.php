@@ -82,6 +82,9 @@ class ClientesController extends Controller
      */
     public function update(Request $request, string $cliente)
     {
+            $cliente['nome']=$request->nome;
+            $cliente['sobrenome']=$request->sobrenome;
+            $cliente['cpf']=$request->cpf;
         return view('confirmation',['cliente'=>$cliente,'title'=>'Confirmação','confirmation'=>'Editado com sucesso!']);
     }
 
@@ -90,6 +93,6 @@ class ClientesController extends Controller
      */
     public function destroy(string $id)   
     {
-        //
+        return view('confirmation',['cliente'=>$id,'title'=>'Confirmação','confirmation'=>'Excluido com sucesso!']);
     }
 }

@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>{{$confirmation}}</h1>
-    {{$cliente['nome']}} {{$cliente['sobrenome']}} <br>{{$cliente['cpf']}}
+    {{$cliente['nome']}} {{$cliente['sobrenome']}} <br>{{$cliente['cpf']}}<br>
+    <a href="{{route('cliente.index')}}"></a>
 </body>
 </html>
