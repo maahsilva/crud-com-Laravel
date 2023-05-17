@@ -8,21 +8,25 @@ class ClientesController extends Controller
 {
 
     public $clientes = [
-        ['nome'=>'José',
-        'sobrenome'=>'Santos',
-        'cpf'=>'50924231882'],
-        ['nome'=>'Maria',
-        'sobrenome'=>'Silva',
-        'cpf'=>'50525231882']
+        [
+            'nome' => 'José',
+            'sobrenome' => 'Santos',
+            'cpf' => '50924231882'
+        ],
+        [
+            'nome' => 'Maria',
+            'sobrenome' => 'Silva',
+            'cpf' => '50525231882'
+        ]
     ];
-    
+
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       return view('index',['clientes'=>$this->clientes,'title'=> 'Clientes']);
+        return view('index', ['clientes' => $this->clientes, 'title' => 'Clientes']);
     }
 
     /**
@@ -30,7 +34,7 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        return view('create')->with('title','Criar');
+        return view('create')->with('title', 'Criar');
     }
 
     /**
@@ -38,8 +42,8 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        $cliente = ['nome'=>$request->nome, 'sobrenome'=>$request->sobrenome, 'cpf'=>$request->cpf];
-        return view('confirmation',['cliente'=>$cliente,'title'=>'Confirmação','confirmation'=>'Cadastrado com sucesso!']);
+        $cliente = ['nome' => $request->nome, 'sobrenome' => $request->sobrenome, 'cpf' => $request->cpf];
+        return view('confirmation', ['cliente' => $cliente, 'title' => 'Confirmação', 'confirmation' => 'Cadastrado com sucesso!']);
     }
 
     /**
@@ -47,18 +51,15 @@ class ClientesController extends Controller
      */
     public function show(string $cliente)
     {
-        foreach($this->clientes as $cli){
-        
-           if($cliente === $cli['nome']){
-            
-            return view('show',['cliente'=>$cli,'text'=>'Cliente encontrado com sucesso!']);
+        foreach ($this->clientes as $cli) {
 
-           } 
+            if ($cliente === $cli['nome']) {
+
+                return view('show', ['cliente' => $cli, 'text' => 'Cliente encontrado com sucesso!']);
+            }
         }
-         
-        return view('show',['text'=>'','msg'=>'Cliente não encontrado']);
-        
-       
+
+        return view('show', ['text' => '', 'msg' => 'Cliente não encontrado']);
     }
 
     /**
@@ -66,15 +67,14 @@ class ClientesController extends Controller
      */
     public function edit(string $cliente)
     {
-        foreach($this->clientes as $cli){
-        
-            if($cliente === $cli['nome']){
-             
-             return view('edit',['cliente'=>$cli]);
- 
-            } 
-         }
-        return view('edit',['cliente'=>'']);
+        foreach ($this->clientes as $cli) {
+
+            if ($cliente === $cli['nome']) {
+
+                return view('edit', ['cliente' => $cli]);
+            }
+        }
+        return view('edit', ['cliente' => '']);
     }
 
     /**
@@ -82,17 +82,28 @@ class ClientesController extends Controller
      */
     public function update(Request $request, string $cliente)
     {
-            $cliente['nome']=$request->nome;
-            $cliente['sobrenome']=$request->sobrenome;
-            $cliente['cpf']=$request->cpf;
-        return view('confirmation',['cliente'=>$cliente,'title'=>'Confirmação','confirmation'=>'Editado com sucesso!']);
+        $client = [
+            'nome' => $request->nome,
+            'sobrenome' => $request->sobrenome,
+            'cpf' => $request->cpf,
+        ];
+        return view('confirmation', ['cliente' => $client, 'title' => 'Confirmação', 'confirmation' => 'Editado com sucesso!']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)   
+    public function destroy(string $id)
     {
-        return view('confirmation',['cliente'=>$id,'title'=>'Confirmação','confirmation'=>'Excluido com sucesso!']);
+        foreach ($this->clientes as $cli) {
+
+            if ($id === $cli['nome']) {
+
+                
+                return view('confirmation', ['cliente' => $cli, 'title' => 'Confirmação', 'confirmation' => 'Excluido com sucesso!']);
+            }
+        }
+
+        
     }
 }

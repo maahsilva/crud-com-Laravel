@@ -9,6 +9,6 @@
 <body>
     <h1>{{$confirmation}}</h1>
     {{$cliente['nome']}} {{$cliente['sobrenome']}} <br>{{$cliente['cpf']}}<br>
-    <a href="{{route('cliente.index')}}"></a>
+    <a href="{{route('clientes.index')}}"></a>
 </body>
 </html>
